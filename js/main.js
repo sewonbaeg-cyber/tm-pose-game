@@ -32,7 +32,7 @@ async function init() {
     // 2. Stabilizer 초기화
     stabilizer = new PredictionStabilizer({
       threshold: 0.7,
-      smoothingFrames: 3
+      smoothingFrames: 2 // 반응 속도 향상을 위해 3 -> 2로 감소
     });
 
     // 3. GameEngine 초기화 (선택적)
@@ -57,6 +57,11 @@ async function init() {
 
     // 7. PoseEngine 시작
     poseEngine.start();
+
+    // 8. GameEngine 시작
+    if (gameEngine) {
+      gameEngine.start();
+    }
 
     stopBtn.disabled = false;
   } catch (error) {
